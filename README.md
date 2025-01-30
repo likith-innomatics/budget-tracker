@@ -21,7 +21,7 @@ This project is a simple yet effective Personal Budget Tracker created as part o
 
 ## How to Use
 
-1. Open `budget_tracker.html` in your web browser
+1. Open `index.html` in your web browser
 2. Use the form to add new transactions:
    - Select transaction type (Income/Expense)
    - Enter amount
@@ -34,9 +34,22 @@ This project is a simple yet effective Personal Budget Tracker created as part o
 ## Project Structure
 
 ```
-├── budget_tracker.html    # Main application file
-└── README.md             # Project documentation
+├── index.html           # Main application file
+└── README.md           # Project documentation
 ```
+
+## Deployment
+
+This project is deployed on Netlify and can be accessed at [budget-tracker-inno.netlify.app](https://budget-tracker-inno.netlify.app)
+
+To deploy on Netlify:
+1. Create a Netlify account
+2. Connect your GitHub repository
+3. Configure build settings:
+   - Base directory: root directory
+   - Build command: none (static site)
+   - Publish directory: root directory
+4. Deploy!
 
 ## Credits
 
