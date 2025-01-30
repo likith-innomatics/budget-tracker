@@ -175,8 +175,8 @@
                         <td>Groceries for the week</td>
                         <td>Completed</td>
                         <td>
-                            <button onclick="editTransaction(this)">Edit</button>
-                            <button onclick="deleteTransaction(this)">Delete</button>
+                            <button >Edit</button>
+                            <button >Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -185,8 +185,8 @@
                         <td>Monthly bus pass</td>
                         <td>Completed</td>
                         <td>
-                            <button onclick="editTransaction(this)">Edit</button>
-                            <button onclick="deleteTransaction(this)">Delete</button>
+                            <button >Edit</button>
+                            <button >Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -195,8 +195,8 @@
                         <td>Cinema tickets</td>
                         <td>Completed</td>
                         <td>
-                            <button onclick="editTransaction(this)">Edit</button>
-                            <button onclick="deleteTransaction(this)">Delete</button>
+                            <button >Edit</button>
+                            <button >Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -205,8 +205,8 @@
                         <td>Monthly salary payment</td>
                         <td>Completed</td>
                         <td>
-                            <button onclick="editTransaction(this)">Edit</button>
-                            <button onclick="deleteTransaction(this)">Delete</button>
+                            <button >Edit</button>
+                            <button >Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -215,8 +215,8 @@
                         <td>Emergency fund deposit</td>
                         <td>Pending</td>
                         <td>
-                            <button onclick="editTransaction(this)">Edit</button>
-                            <button onclick="deleteTransaction(this)">Delete</button>
+                            <button >Edit</button>
+                            <button >Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -225,8 +225,8 @@
                         <td>Electricity bill</td>
                         <td>Completed</td>
                         <td>
-                            <button onclick="editTransaction(this)">Edit</button>
-                            <button onclick="deleteTransaction(this)">Delete</button>
+                            <button>Edit</button>
+                            <button>Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -241,50 +241,5 @@
             <a href="#terms">Terms of Use</a>
         </nav>
     </footer>
-
-    <script>
-        document.getElementById('transaction-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const type = document.getElementById('transaction-type').value;
-            const amount = document.getElementById('amount').value;
-            const category = document.getElementById('category').value;
-            const date = document.getElementById('date').value;
-            const description = document.getElementById('description').value;
-
-            let status = 'Completed';
-            if (category.toLowerCase() === 'savings') {
-                status = 'Pending';
-            }
-
-            const tableBody = document.getElementById('transactions-table-body');
-            const newRow = tableBody.insertRow(0);
-            
-            newRow.insertCell(0).textContent = category;
-            newRow.insertCell(1).textContent = `₹${parseFloat(amount).toFixed(2)}`;
-            newRow.insertCell(2).textContent = description;
-            newRow.insertCell(3).textContent = status;
-            
-            const actionCell = newRow.insertCell(4);
-            actionCell.innerHTML = `
-                <button onclick="editTransaction(this)">Edit</button>
-                <button onclick="deleteTransaction(this)">Delete</button>
-            `;
-
-            e.target.reset();
-            document.getElementById('date').valueAsDate = new Date();
-        });
-
-        function editTransaction(button) {
-            const row = button.closest('tr');
-        }
-
-        function deleteTransaction(button) {
-            const row = button.closest('tr');
-            row.remove();
-        }
-
-        document.getElementById('date').valueAsDate = new Date();
-    </script>
 </body>
 </html>
