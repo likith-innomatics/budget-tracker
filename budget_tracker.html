@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Budget Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 5px;
+        }
+        nav {
+            margin: 1rem 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        section {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        form {
+            display: grid;
+            gap: 1rem;
+            max-width: 500px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #34495e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Personal Budget Tracker</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#add-transaction">Add Transaction</a>
+            <a href="#summary">View Budget</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="introduction">
+            <h2>Welcome to Your Personal Budget Tracker</h2>
+            <p>
+                Take control of your finances with our easy-to-use budget tracker. 
+                Simply input your income and expenses, categorize them, and get a clear view of your financial health.
+                Start tracking your money today for a better financial future!
+            </p>
+        </section>
+
+        <section id="add-transaction">
+            <h2>Add Income/Expense</h2>
+            <form id="transaction-form">
+                <div>
+                    <label for="transaction-type">Transaction Type:</label>
+                    <select id="transaction-type" name="transaction-type" required>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="amount">Amount (₹):</label>
+                    <input type="number" id="amount" name="amount" min="0" step="0.01" required>
+                </div>
+
+                <div>
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="salary">Salary</option>
+                        <option value="food">Food</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="rent">Rent</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="others">Others</option>
+                        <option value="savings">Savings</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" name="description" required>
+                </div>
+
+                <div>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+
+                <button type="submit">Add Transaction</button>
+            </form>
+        </section>
+
+        <section id="summary">
+            <h2>Budget Summary</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th colspan="2">Transaction Details</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-table-body">
+                    <tr>
+                        <td>Food</td>
+                        <td>₹200</td>
+                        <td>Groceries for the week</td>
+                        <td>Completed</td>
+                        <td>
+                            <button onclick="editTransaction(this)">Edit</button>
+                            <button onclick="deleteTransaction(this)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Transportation</td>
+                        <td>₹100</td>
+                        <td>Monthly bus pass</td>
+                        <td>Completed</td>
+                        <td>
+                            <button onclick="editTransaction(this)">Edit</button>
+                            <button onclick="deleteTransaction(this)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Entertainment</td>
+                        <td>₹50</td>
+                        <td>Cinema tickets</td>
+                        <td>Completed</td>
+                        <td>
+                            <button onclick="editTransaction(this)">Edit</button>
+                            <button onclick="deleteTransaction(this)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Salary</td>
+                        <td>₹5000</td>
+                        <td>Monthly salary payment</td>
+                        <td>Completed</td>
+                        <td>
+                            <button onclick="editTransaction(this)">Edit</button>
+                            <button onclick="deleteTransaction(this)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Savings</td>
+                        <td>₹500</td>
+                        <td>Emergency fund deposit</td>
+                        <td>Pending</td>
+                        <td>
+                            <button onclick="editTransaction(this)">Edit</button>
+                            <button onclick="deleteTransaction(this)">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Utilities</td>
+                        <td>₹150</td>
+                        <td>Electricity bill</td>
+                        <td>Completed</td>
+                        <td>
+                            <button onclick="editTransaction(this)">Edit</button>
+                            <button onclick="deleteTransaction(this)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Personal Budget Tracker v1.0</p>
+        <nav>
+            <a href="#privacy">Privacy Policy</a> |
+            <a href="#terms">Terms of Use</a>
+        </nav>
+    </footer>
+
+    <script>
+        document.getElementById('transaction-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const type = document.getElementById('transaction-type').value;
+            const amount = document.getElementById('amount').value;
+            const category = document.getElementById('category').value;
+            const date = document.getElementById('date').value;
+            const description = document.getElementById('description').value;
+
+            let status = 'Completed';
+            if (category.toLowerCase() === 'savings') {
+                status = 'Pending';
+            }
+
+            const tableBody = document.getElementById('transactions-table-body');
+            const newRow = tableBody.insertRow(0);
+            
+            newRow.insertCell(0).textContent = category;
+            newRow.insertCell(1).textContent = `₹${parseFloat(amount).toFixed(2)}`;
+            newRow.insertCell(2).textContent = description;
+            newRow.insertCell(3).textContent = status;
+            
+            const actionCell = newRow.insertCell(4);
+            actionCell.innerHTML = `
+                <button onclick="editTransaction(this)">Edit</button>
+                <button onclick="deleteTransaction(this)">Delete</button>
+            `;
+
+            e.target.reset();
+            document.getElementById('date').valueAsDate = new Date();
+        });
+
+        function editTransaction(button) {
+            const row = button.closest('tr');
+        }
+
+        function deleteTransaction(button) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+
+        document.getElementById('date').valueAsDate = new Date();
+    </script>
+</body>
+</html>
